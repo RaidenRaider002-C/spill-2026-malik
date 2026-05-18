@@ -140,6 +140,8 @@ class BossEnemy:
         self.damage = 1.5
 
         self.image = pygame.transform.scale(
+
+            
             base_enemy_image,
             (self.size, self.size)
         )
