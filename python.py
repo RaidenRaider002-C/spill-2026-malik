@@ -135,7 +135,7 @@ class BossEnemy:
         self.max_hp = 3000
         self.hp = self.max_hp
 
-        self.size = 220
+        self.size = 600
 
         self.damage = 1.5
 
