@@ -120,6 +120,61 @@ class Bullet:
         pygame.draw.circle(screen, GOLD, (int(self.x + offset[0]), int(self.y + offset[1])), self.size)
         pygame.draw.circle(screen, WHITE, (int(self.x + offset[0]), int(self.y + offset[1])), self.size-2)
 
+
+
+# LEGG TIL DENNE KLASSEN UNDER Enemy:
+
+class BossEnemy:
+    def __init__(self):
+        self.x = WIDTH // 2
+        self.y = -250
+
+        self.speed = 1.8
+
+        self.max_hp = 3000
+        self.hp = self.max_hp
+
+        self.size = 220
+
+        self.damage = 1.5
+
+        self.image = pygame.transform.scale(
+            base_enemy_image,
+            (self.size, self.size)
+        )
+
+    def update(self, player):
+        angle = math.atan2(
+            (player.y + player.size/2) - self.y,
+            (player.x + player.size/2) - self.x
+        )
+
+        self.x += math.cos(angle) * self.speed
+        self.y += math.sin(angle) * self.speed
+
+    def draw(self, offset=(0,0)):
+        draw_x = self.x + offset[0]
+        draw_y = self.y + offset[1]
+
+        screen.blit(self.image, (draw_x, draw_y))
+
+        # BOSS HP BAR
+        pygame.draw.rect(screen, GRAY, (200, 20, 500, 30))
+
+        hp_width = 500 * (self.hp / self.max_hp)
+
+        pygame.draw.rect(
+            screen,
+            BRIGHT_RED,
+            (200, 20, hp_width, 30)
+        )
+
+        pygame.draw.rect(screen, WHITE, (200, 20, 500, 30), 3)
+
+        txt = font_small.render("FINAL BOSS", True, WHITE)
+
+        screen.blit(txt, (WIDTH//2 - txt.get_width()//2, 55))
+        
 class Enemy:
     def __init__(self, wave):
         side = random.randint(0, 3)
