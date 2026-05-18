@@ -58,17 +58,18 @@ class Particle:
     def draw(self, surface, offset=(0,0)):
         if self.lifetime > 0:
             pygame.draw.circle(surface, self.color, (int(self.x + offset[0]), int(self.y + offset[1])), self.size)
-
+ 
+    
 class Player:
     def __init__(self):
         self.x = WIDTH // 2
         self.y = HEIGHT // 2
         self.size = 30
-        self.speed = 4.5
+        self.speed = 5.5
         self.hp = 100
         self.max_hp = 100
         self.coins = 100
-        self.damage = 13
+        self.damage = 15
         self.score = 0
         self.shoot_delay = 300
         self.last_shot = 0
@@ -129,7 +130,7 @@ class BossEnemy:
         self.x = WIDTH // 2
         self.y = -250
 
-        self.speed = 1.8
+        self.speed = 2
 
         self.max_hp = 3000
         self.hp = self.max_hp
@@ -183,7 +184,7 @@ class Enemy:
         elif side == 2: self.x, self.y = -50, random.randint(0, HEIGHT)
         else: self.x, self.y = WIDTH + 50, random.randint(0, HEIGHT)
         
-        self.speed = 2 + (wave * 0.2)
+        self.speed = 1.5 + (wave * 0.2)
         self.max_hp = 50 + (wave * 10)
         self.hp = self.max_hp
         self.size = 50 + min(wave, 10)
@@ -349,7 +350,7 @@ while running:
             screen.blit(font_small.render(f"{text} ({price})", True, WHITE), (shop_x, 220 + i*50))
         
         screen.blit(font_small.render("Press B to Resume", True, GREEN), (WIDTH//2 - 100, 480))
-
+    
     if game_over or game_won:
         screen.fill(BLACK)
         title = "MISSION FAILED" if game_over else "MISSION COMPLETE"
@@ -367,5 +368,5 @@ while running:
 
 
     pygame.display.flip()
-    
+
 pygame.quit()
