@@ -365,6 +365,7 @@ while running:
         txt = font_small.render("Restart", True, WHITE)
         screen.blit(txt, (button_rect.centerx - txt.get_width()//2, button_rect.centery - txt.get_height()//2))
 
+
     pygame.display.flip()
     
 pygame.quit()
