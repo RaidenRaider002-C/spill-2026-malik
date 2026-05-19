@@ -278,7 +278,7 @@ while running:
         screen.blit(font_small.render(f"Wave: {wave}/{MAX_WAVE}", True, WHITE), (20, 80))
         screen.blit(font_small.render(f"Score: {player.score}", True, CYAN), (20, 110))
         screen.blit(font_small.render("[B] Shop", True, GOLD), (WIDTH - 120, 20))
-        
+
     if show_shop:
         s = pygame.Surface((WIDTH, HEIGHT), pygame.SRCALPHA)
         s.fill((0, 0, 0, 180))
@@ -299,7 +299,7 @@ while running:
         
         screen.blit(font_small.render("Press B to Resume", True, GREEN), (WIDTH//2 - 100, 480))
 
-        
+
     if game_over or game_won:
         screen.fill(BLACK)
         title = "MISSION FAILED" if game_over else "MISSION COMPLETE"
