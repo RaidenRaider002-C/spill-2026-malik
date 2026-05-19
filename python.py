@@ -71,7 +71,7 @@ class Player:
         self.coins = 100
         self.damage = 15
         self.score = 0
-        self.shoot_delay = 300
+        self.shoot_delay = 450
         self.last_shot = 0
         self.shake_intensity = 0
 
@@ -111,7 +111,7 @@ class Bullet:
         angle = math.atan2(target_y - y, target_x - x)
         self.dx = math.cos(angle) * 14
         self.dy = math.sin(angle) * 14
-        self.size = 10
+        self.size = 7
 
     def update(self):
         self.x += self.dx
@@ -278,7 +278,7 @@ while running:
         screen.blit(font_small.render(f"Wave: {wave}/{MAX_WAVE}", True, WHITE), (20, 80))
         screen.blit(font_small.render(f"Score: {player.score}", True, CYAN), (20, 110))
         screen.blit(font_small.render("[B] Shop", True, GOLD), (WIDTH - 120, 20))
-
+        
     if show_shop:
         s = pygame.Surface((WIDTH, HEIGHT), pygame.SRCALPHA)
         s.fill((0, 0, 0, 180))
@@ -298,7 +298,8 @@ while running:
             screen.blit(font_small.render(f"{text} ({price})", True, WHITE), (shop_x, 220 + i*50))
         
         screen.blit(font_small.render("Press B to Resume", True, GREEN), (WIDTH//2 - 100, 480))
-    
+
+        
     if game_over or game_won:
         screen.fill(BLACK)
         title = "MISSION FAILED" if game_over else "MISSION COMPLETE"
