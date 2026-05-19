@@ -302,7 +302,7 @@ while running:
                             particles.append(Particle(e.x + e.size/2, e.y + e.size/2, RED))
                         if e in enemies: enemies.remove(e)
                         player.coins += 5
-                        player.score += 10
+                        player.score += 50
                     break
 
         if not enemies:
