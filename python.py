@@ -25,7 +25,7 @@ CYAN = (0, 255, 255)
 font_small = pygame.font.SysFont("Segoe UI", 24, bold=True)
 font_large = pygame.font.SysFont("Segoe UI", 72, bold=True)
 
-MAX_WAVE = 15
+MAX_WAVE = 20
 
 # Forsøk å laste bilder, lag placeholders hvis de ikke finnesdddd
 def load_image(path, size):
