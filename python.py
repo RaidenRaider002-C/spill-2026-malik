@@ -72,7 +72,7 @@ class Player:
         self.damage = 15
         self.score = 0
         self.shoot_delay = 300
-        self.last_shot = 1000
+        self.last_shot = 0
         self.shake_intensity = 0
 
     def move(self, keys):
@@ -111,7 +111,7 @@ class Bullet:
         angle = math.atan2(target_y - y, target_x - x)
         self.dx = math.cos(angle) * 14
         self.dy = math.sin(angle) * 14
-        self.size = 6
+        self.size = 10
 
     def update(self):
         self.x += self.dx
@@ -132,7 +132,7 @@ class Enemy:
         elif side == 2: self.x, self.y = -50, random.randint(0, HEIGHT)
         else: self.x, self.y = WIDTH + 50, random.randint(0, HEIGHT)
         
-        self.speed = 1.5 + (wave * 0.2)
+        self.speed = 1.4 + (wave * 0.2)
         self.max_hp = 50 + (wave * 10)
         self.hp = self.max_hp
         self.size = 50 + min(wave, 10)
