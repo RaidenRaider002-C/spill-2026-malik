@@ -72,7 +72,7 @@ class Player:
         self.damage = 15
         self.score = 0
         self.shoot_delay = 300
-        self.last_shot = 0
+        self.last_shot = 1000
         self.shake_intensity = 0
 
     def move(self, keys):
