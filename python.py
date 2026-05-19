@@ -125,23 +125,27 @@ class Bullet:
 
 # LEGG TIL DENNE KLASSEN UNDER Enemy:
 
+# =========================
+# BOSS
+# =========================
 class BossEnemy:
     def __init__(self):
-        self.x = WIDTH // 2
-        self.y = -250
+        self.size = 260
+
+        self.x = WIDTH // 2 - self.size // 2
+        self.y = -300
 
         self.speed = 2
 
         self.max_hp = 3000
         self.hp = self.max_hp
 
-        self.size = 600
-
+        self.size = 260
         self.damage = 1.5
 
         self.image = pygame.transform.scale(
 
-            
+
             base_enemy_image,
             (self.size, self.size)
         )
@@ -172,12 +176,20 @@ class BossEnemy:
             (200, 20, hp_width, 30)
         )
 
-        pygame.draw.rect(screen, WHITE, (200, 20, 500, 30), 3)
+        pygame.draw.rect(
+            screen,
+            WHITE,
+            (200, 20, 500, 30),
+            3
+        )
 
         txt = font_small.render("FINAL BOSS", True, WHITE)
 
-        screen.blit(txt, (WIDTH//2 - txt.get_width()//2, 55))
-        
+        screen.blit(
+            txt,
+            (WIDTH//2 - txt.get_width()//2, 55)
+        )
+
 class Enemy:
     def __init__(self, wave):
         side = random.randint(0, 3)
@@ -302,7 +314,7 @@ while running:
                             particles.append(Particle(e.x + e.size/2, e.y + e.size/2, RED))
                         if e in enemies: enemies.remove(e)
                         player.coins += 5
-                        player.score += 50
+                        player.score += 10
                     break
 
         if not enemies:
