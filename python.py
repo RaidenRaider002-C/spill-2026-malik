@@ -139,7 +139,7 @@ class Player:
         self.coins = 100
         self.damage = 30
         self.score = 0
-        self.shoot_delay = 400
+        self.shoot_delay = 450
         self.last_shot = 0
         self.shake_intensity = 0
 
@@ -235,8 +235,9 @@ class Enemy:
         self.is_boss = is_boss
 
         if self.is_boss:
-            self.speed = 4.0
-            self.max_hp = 500 + (wave * 20)
+            # Make the boss much tougher and slightly faster
+            self.speed = 5.0
+            self.max_hp = 2000 + (wave * 100)
             self.size = 200
         else:
             self.speed = 1.4 + (wave * 0.2)
@@ -321,7 +322,7 @@ def reset_game():
     enemies = []
     particles = []
 
-    wave = 1
+    wave = 21
 
     show_shop = False
     game_over = False
