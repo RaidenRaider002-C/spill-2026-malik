@@ -27,6 +27,7 @@ font_small = pygame.font.SysFont("Segoe UI", 24, bold=True)
 font_large = pygame.font.SysFont("Segoe UI", 72, bold=True)
 
 MAX_WAVE = 20
+BOSS_WAVE = MAX_WAVE + 1
 
 # =========================
 # MENU
@@ -136,9 +137,9 @@ class Player:
         self.hp = 100
         self.max_hp = 100
         self.coins = 100
-        self.damage = 20
+        self.damage = 50
         self.score = 0
-        self.shoot_delay = 400
+        self.shoot_delay = 350
         self.last_shot = 0
         self.shake_intensity = 0
 
@@ -219,7 +220,7 @@ class Bullet:
 # ENEMY
 # =========================
 class Enemy:
-    def __init__(self, wave):
+    def __init__(self, wave, is_boss=False):
         side = random.randint(0, 3)
 
         if side == 0:
@@ -231,13 +232,18 @@ class Enemy:
         else:
             self.x, self.y = WIDTH + 50, random.randint(0, HEIGHT)
 
-        self.speed = 1.4 + (wave * 0.2)
+        self.is_boss = is_boss
 
-        self.max_hp = 50 + (wave * 10)
+        if self.is_boss:
+            self.speed = 4.0
+            self.max_hp = 300 + (wave * 20)
+            self.size = 500
+        else:
+            self.speed = 1.4 + (wave * 0.2)
+            self.max_hp = 1000 + (wave * 10)
+            self.size = 500 + min(wave, 10)
         
         self.hp = self.max_hp
-
-        self.size = 50 + min(wave, 10)
 
         self.image = pygame.transform.scale(
             base_enemy_image,
@@ -259,18 +265,32 @@ class Enemy:
 
         screen.blit(self.image, (draw_x, draw_y))
 
+        if self.is_boss:
+            label = font_small.render("BOSS", True, GOLD)
+            screen.blit(
+                label,
+                (draw_x + self.size//2 - label.get_width()//2, draw_y - 30)
+            )
+            bar_y = draw_y - 18
+            bar_height = 8
+            hp_color = BRIGHT_RED
+        else:
+            bar_y = draw_y - 10
+            bar_height = 5
+            hp_color = GREEN
+
         hp_pct = max(0, self.hp / self.max_hp)
 
         pygame.draw.rect(
             screen,
             GRAY,
-            (draw_x, draw_y - 10, self.size, 5)
+            (draw_x, bar_y, self.size, bar_height)
         )
 
         pygame.draw.rect(
             screen,
-            GREEN,
-            (draw_x, draw_y - 10, self.size * hp_pct, 5)
+            hp_color,
+            (draw_x, bar_y, self.size * hp_pct, bar_height)
         )
 
 # =========================
@@ -279,9 +299,11 @@ class Enemy:
 def spawn_wave():
     global enemies
 
-    num_enemies = 5 + (wave * 4)
-
-    enemies = [Enemy(wave) for _ in range(num_enemies)]
+    if wave == BOSS_WAVE:
+        enemies = [Enemy(wave, is_boss=True)]
+    else:
+        num_enemies = 5 + (wave * 4)
+        enemies = [Enemy(wave) for _ in range(num_enemies)]
 
 def reset_game():
     global player
@@ -522,7 +544,7 @@ while running:
 
             wave += 1
 
-            if wave > MAX_WAVE:
+            if wave > BOSS_WAVE:
                 game_won = True
             else:
                 spawn_wave()
@@ -590,7 +612,7 @@ while running:
 
         screen.blit(
             font_small.render(
-                f"Wave: {wave}/{MAX_WAVE}",
+                f"Wave: {'BOSS' if wave == BOSS_WAVE else wave}/{BOSS_WAVE}",
                 True,
                 WHITE
             ),
