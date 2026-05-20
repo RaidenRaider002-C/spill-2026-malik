@@ -137,9 +137,9 @@ class Player:
         self.hp = 100
         self.max_hp = 100
         self.coins = 100
-        self.damage = 50
+        self.damage = 30
         self.score = 0
-        self.shoot_delay = 350
+        self.shoot_delay = 400
         self.last_shot = 0
         self.shake_intensity = 0
 
@@ -236,12 +236,12 @@ class Enemy:
 
         if self.is_boss:
             self.speed = 4.0
-            self.max_hp = 300 + (wave * 20)
-            self.size = 500
+            self.max_hp = 500 + (wave * 20)
+            self.size = 200
         else:
             self.speed = 1.4 + (wave * 0.2)
-            self.max_hp = 1000 + (wave * 10)
-            self.size = 500 + min(wave, 10)
+            self.max_hp = 20 + (wave * 10)
+            self.size = 50 + min(wave, 10)
         
         self.hp = self.max_hp
 
