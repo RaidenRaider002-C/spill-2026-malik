@@ -512,8 +512,8 @@ while running:
                         if e in enemies:
                             enemies.remove(e)
 
-                        player.coins += 5
-                        player.score += 10
+                        player.coins += 4
+                        player.score += 20
 
                     break
 
