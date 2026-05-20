@@ -322,7 +322,7 @@ def reset_game():
     enemies = []
     particles = []
 
-    wave = 21
+    wave = 1
 
     show_shop = False
     game_over = False
