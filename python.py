@@ -139,7 +139,7 @@ class Player:
         self.coins = 100
         self.damage = 30
         self.score = 0
-        self.shoot_delay = 450
+        self.shoot_delay = 400
         self.last_shot = 0
         self.shake_intensity = 0
 
