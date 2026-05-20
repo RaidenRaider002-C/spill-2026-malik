@@ -100,16 +100,24 @@ class Player:
         screen.blit(player_image, (draw_x, draw_y))
         # HP bar (ikke risting)
         pygame.draw.rect(screen, GRAY, (20, 20, 200, 20))
+
         hp_width = 200 * (max(0, self.hp) / self.max_hp)
-        pygame.draw.rect(screen, RED, (20, 20, hp_width, 20))
+
+        pygame.draw.rect(screen, BRIGHT_RED, (20, 20, hp_width, 20))
         pygame.draw.rect(screen, WHITE, (20, 20, 200, 20), 2)
 
+# =========================
+# BULLET
+# =========================
 class Bullet:
     def __init__(self, x, y, target_x, target_y):
         self.x = x
         self.y = y
+
         angle = math.atan2(target_y - y, target_x - x)
+
         self.dx = math.cos(angle) * 14
+
         self.dy = math.sin(angle) * 14
         self.size = 7
 
@@ -134,6 +142,8 @@ class Enemy:
         
         self.speed = 1.4 + (wave * 0.2)
         self.max_hp = 50 + (wave * 10)
+        self.max_hp = 50 + (wave * 10)
+        self.size = 50 + min(wave, 10)
         self.hp = self.max_hp
         self.size = 50 + min(wave, 10)
         self.image = pygame.transform.scale(base_enemy_image, (self.size, self.size))
