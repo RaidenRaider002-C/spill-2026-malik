@@ -7,3 +7,5 @@ jeg har ikke fått greid enda til lage finale boss, det er vanskelig. akkurat n�
 onsdag: endelig har jeg blitt ferdig å lage menyen som tok meg veldig mye tid, jeg skal gå videre til å lage final boss i spillet mitt.
 
 etter hvert som jeg har greid lage final boss så er spillet mitt vært veldig bra og jeg har brukettestet spillet, det er noen som sa at jeg manlger meny eller at finale bossen ikke er der, men jeg har fikset alt som de sa. 
+
+jeg har putte bakgrunn bilde til spillet mitt, kanskje spillet mitt skal ha musikk eller lyd også. 
