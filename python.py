@@ -137,9 +137,9 @@ class Player:
         self.hp = 100
         self.max_hp = 100
         self.coins = 100
-        self.damage = 30
+        self.damage = 25
         self.score = 0
-        self.shoot_delay = 400
+        self.shoot_delay = 440
         self.last_shot = 0
         self.shake_intensity = 0
 
