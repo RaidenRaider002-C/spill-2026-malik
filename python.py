@@ -4,9 +4,9 @@ import math
 
 pygame.init()
 
-# =========================
+
 # SETTINGS
-# =========================
+
 WIDTH, HEIGHT = 900, 600
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Wave Survival")
@@ -29,9 +29,9 @@ font_large = pygame.font.SysFont("Segoe UI", 72, bold=True)
 MAX_WAVE = 20
 BOSS_WAVE = MAX_WAVE + 1
 
-# =========================
+ 
 # MENU
-# =========================
+
 game_started = False
 
 start_button = pygame.Rect(WIDTH//2 - 120, HEIGHT//2 + 40, 240, 60)
@@ -83,9 +83,9 @@ def draw_menu():
         )
     )
 
-# =========================
+
 # LOAD IMAGES
-# =========================
+
 def load_image(path, size):
     try:
         img = pygame.image.load(path).convert_alpha()
@@ -98,9 +98,9 @@ def load_image(path, size):
 player_image = load_image("guy with spray.png", (50, 50))
 base_enemy_image = load_image("bugs.png", (1000, 1000)) # Skaleres per fiende
 
-# =========================
+
 # PARTICLES
-# =========================
+
 class Particle:
     def __init__(self, x, y, color):
         self.x = x
@@ -125,9 +125,9 @@ class Particle:
                 self.size
             )
 
-# =========================
+
 # PLAYER
-# =========================
+
 class Player:
     def __init__(self):
         self.x = WIDTH // 2
@@ -188,9 +188,9 @@ class Player:
         pygame.draw.rect(screen, BRIGHT_RED, (20, 20, hp_width, 20))
         pygame.draw.rect(screen, WHITE, (20, 20, 200, 20), 2)
 
-# =========================
+
 # BULLET
-# =========================
+
 class Bullet:
     def __init__(self, x, y, target_x, target_y):
         self.x = x
@@ -216,9 +216,9 @@ class Bullet:
             self.size
         )
 
-# =========================
+
 # ENEMY
-# =========================
+
 class Enemy:
     def __init__(self, wave, is_boss=False):
         side = random.randint(0, 3)
@@ -294,9 +294,9 @@ class Enemy:
             (draw_x, bar_y, self.size * hp_pct, bar_height)
         )
 
-# =========================
+
 # GAME FUNCTIONS
-# =========================
+
 def spawn_wave():
     global enemies
 
@@ -330,9 +330,9 @@ def reset_game():
 
     spawn_wave()
 
-# =========================
+
 # START GAME
-# =========================
+
 reset_game()
 
 button_rect = pygame.Rect(
@@ -348,9 +348,9 @@ while running:
 
     clock.tick(60)
 
-    # =========================
+    
     # MENU
-    # =========================
+    
     if not game_started:
 
         draw_menu()
@@ -372,9 +372,9 @@ while running:
         pygame.display.flip()
         continue
 
-    # =========================
+    
     # GAME
-    # =========================
+    
     offset_x = 0
     offset_y = 0
 
@@ -434,9 +434,9 @@ while running:
                 if button_rect.collidepoint(event.pos):
                     game_started = False
 
-    # =========================
+    
     # GAMEPLAY
-    # =========================
+    
     if not show_shop and not game_over and not game_won:
 
         keys = pygame.key.get_pressed()
@@ -550,9 +550,9 @@ while running:
             else:
                 spawn_wave()
 
-    # =========================
+    
     # BACKGROUND
-    # =========================
+    
     for x in range(0, WIDTH + 50, 50):
 
         pygame.draw.line(
@@ -571,9 +571,9 @@ while running:
             (WIDTH, y + offset_y)
         )
 
-    # =========================
+    
     # DRAW GAME
-    # =========================
+    
     if not game_over and not game_won:
 
         current_offset = (offset_x, offset_y)
@@ -638,9 +638,9 @@ while running:
             (WIDTH - 120, 20)
         )
 
-    # =========================
+    
     # SHOP
-    # =========================
+    
     if show_shop:
 
         s = pygame.Surface((WIDTH, HEIGHT), pygame.SRCALPHA)
@@ -686,9 +686,9 @@ while running:
             (WIDTH//2 - 120, 480)
         )
 
-    # =========================
+    
     # GAME OVER / WIN
-    # =========================
+    
     if game_over or game_won:
 
         screen.fill(BLACK)
